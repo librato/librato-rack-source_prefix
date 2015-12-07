@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in librato-rails-source_prefix.gemspec
+# Specify your gem's dependencies in librato-rack-source_prefix.gemspec
 gemspec
 
 # debugging

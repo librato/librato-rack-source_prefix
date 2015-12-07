@@ -1,4 +1,4 @@
-module Librato::Rails::SourcePrefix
+module Librato::Rack::SourcePrefix
   module Extensions
     module Collector
 

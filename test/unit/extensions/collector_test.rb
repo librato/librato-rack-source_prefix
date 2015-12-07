@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'librato-rails'
+require 'librato-rack'
 
-describe Librato::Rails::SourcePrefix::Extensions::Collector do
+describe Librato::Rack::SourcePrefix::Extensions::Collector do
 
   let(:aggregate) { MiniTest::Mock.new }
   let(:counters) { MiniTest::Mock.new }
@@ -9,7 +9,7 @@ describe Librato::Rails::SourcePrefix::Extensions::Collector do
 
   subject do
     Class.new {
-      include Librato::Rails::SourcePrefix::Extensions::Collector
+      include Librato::Rack::SourcePrefix::Extensions::Collector
       attr_reader :aggregate, :counters
 
       def initialize(agg, cnt)
@@ -22,7 +22,7 @@ describe Librato::Rails::SourcePrefix::Extensions::Collector do
   before do
     # Set-up Librato metrics stuff
     Librato.register_tracker(
-      Librato::Rails::Tracker.new(
+      Librato::Rack::Tracker.new(
         Librato::Rack::Configuration.new
       )
     )
