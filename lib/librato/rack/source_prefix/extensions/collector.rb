@@ -17,7 +17,7 @@ module Librato::Rack::SourcePrefix
       end
 
       def increment(counter, options={})
-        if prefix_needed?(options[:source])
+        if prefix_needed?(options)
           options[:source] = apply_prefix(options[:source])
         end
 
@@ -29,7 +29,7 @@ module Librato::Rack::SourcePrefix
         if args.length > 1 and args[-1].respond_to?(:each)
           options = args[-1]
 
-          if prefix_needed?(options[:source])
+          if prefix_needed?(options)
             options[:source] = apply_prefix(options[:source])
           end
         end
@@ -44,8 +44,17 @@ module Librato::Rack::SourcePrefix
         Librato.tracker.config.source
       end
 
-      def prefix_needed?(source)
-        source && global_source && !global_source.empty?
+      def prefix_needed?(options)
+        if options[:apply_prefix].nil?
+          apply_prefix = true
+        else
+          apply_prefix = options.delete(:apply_prefix)
+        end
+
+        apply_prefix &&
+          options[:source] &&
+          global_source &&
+          !global_source.empty?
       end
 
       def apply_prefix(source)

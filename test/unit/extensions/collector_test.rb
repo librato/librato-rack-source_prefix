@@ -28,7 +28,6 @@ describe Librato::Rack::SourcePrefix::Extensions::Collector do
     )
   end
 
-
   describe '#increment' do
 
     let(:metric) { 'metric' }
@@ -43,10 +42,18 @@ describe Librato::Rack::SourcePrefix::Extensions::Collector do
 
         it 'prefixes the custom source with the global source' do
           counters.expect(:increment, nil,
-            [metric, { source: "#{global_source}.foo" }]
+            [metric, source: "#{global_source}.foo"]
           )
 
           subject.increment metric, source: 'foo'
+        end
+
+        describe 'when :apply_prefix is false' do
+
+          it 'does NOT perform any source prefixing' do
+            counters.expect(:increment, nil, [metric, source: 'foo'])
+            subject.increment metric, source: 'foo', apply_prefix: false
+          end
         end
       end
 
@@ -64,7 +71,7 @@ describe Librato::Rack::SourcePrefix::Extensions::Collector do
       describe 'when a custom source is specified' do
 
         it 'does NOT perform any source prefixing' do
-          counters.expect(:increment, nil, [metric, { source: 'foo' }])
+          counters.expect(:increment, nil, [metric, source: 'foo'])
           subject.increment metric, source: 'foo'
         end
       end
@@ -86,10 +93,21 @@ describe Librato::Rack::SourcePrefix::Extensions::Collector do
 
         it 'prefixes the custom source with the global source' do
           aggregate.expect(:measure, nil,
-            [metric, val, { source: "#{global_source}.foo" }]
+            [metric, val, source: "#{global_source}.foo"]
           )
 
           subject.measure metric, val, source: 'foo'
+        end
+
+        describe 'when :apply_prefix is false' do
+
+          it 'does NOT perform any source prefixing' do
+            aggregate.expect(:measure, nil,
+              [metric, val, source: 'foo']
+            )
+
+            subject.measure metric, val, source: 'foo', apply_prefix: false
+          end
         end
       end
 
@@ -107,7 +125,7 @@ describe Librato::Rack::SourcePrefix::Extensions::Collector do
       describe 'when a custom source is specified' do
 
         it 'does NOT perform any source prefixing' do
-          aggregate.expect(:measure, nil, [metric, val, { source: 'foo' }])
+          aggregate.expect(:measure, nil, [metric, val, source: 'foo'])
           subject.measure metric, val, source: 'foo'
         end
       end
