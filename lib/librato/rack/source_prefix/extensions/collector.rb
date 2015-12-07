@@ -40,10 +40,6 @@ module Librato::Rack::SourcePrefix
 
       private
 
-      def global_source
-        Librato.tracker.config.source
-      end
-
       def prefix_needed?(options)
         if options[:apply_prefix].nil?
           apply_prefix = true
@@ -58,7 +54,19 @@ module Librato::Rack::SourcePrefix
       end
 
       def apply_prefix(source)
-        "#{global_source}.#{source}"
+        if source_pids
+          "#{global_source}.#{$$}.#{source}"
+        else
+          "#{global_source}.#{source}"
+        end
+      end
+
+      def global_source
+        Librato.tracker.config.source
+      end
+
+      def source_pids
+        Librato.tracker.config.source_pids
       end
     end
   end
