@@ -42,6 +42,12 @@ If you were to configure a global source value of `myapp` and install the *libra
 
 In this case, the *source* value specified as part of the `increment` call is automatically prefixed with the global source `myapp`.
 
+To override this behavior and preserve the source name, use the `apply_prefix` option:
+```ruby
+Librato.increment :foo, source: "my.source", apply_prefix: false
+```
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
