@@ -1,5 +1,7 @@
 # librato-rack-source_prefix
 
+[![Gem Version](https://badge.fury.io/rb/librato-rack-source_prefix.svg)](https://badge.fury.io/rb/librato-rack-source_prefix) [![Build Status](https://travis-ci.org/librato/librato-rack-source_prefix.svg?branch=master)](https://travis-ci.org/librato/librato-rack-source_prefix)
+
 This gem enables the automatic prefixing of metric source names. 
 
 By default, when you submit a metric with a custom source, that source will be passed as-is to the Librato API. For example:
