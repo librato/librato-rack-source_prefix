@@ -7,7 +7,7 @@ This gem enables the automatic prefixing of metric source names.
 By default, when you submit a metric with a custom source, that source will be passed as-is to the Librato API. For example:
 
 ```ruby
-Librato.increment :foo, source: 'some_action'
+Librato.increment :foo, source: "my.source"
 ```
 
 The code above would result in the following data being POSTed to the Librato API:
@@ -18,7 +18,7 @@ The code above would result in the following data being POSTed to the Librato AP
     {
       "name": "foo",
       "value": 1, 
-      "source": "some_action"
+      "source": "my.source"
     }
   ]
 }
@@ -34,7 +34,7 @@ If you were to configure a global source value of `myapp` and install the *libra
     {
       "name": "foo",
       "value": 1, 
-      "source": "myapp.some_action"
+      "source": "myapp.my.source"
     }
   ]
 }
