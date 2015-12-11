@@ -69,3 +69,7 @@ You'll want to add this line wherever you've configured your `Librato::Rack` mid
 ### Rails
 
 If you are using Rails, source prefixing will be enabled automatically as a result of adding the *librato-rack-source_prefix* gem to your Gemfile. No additional configuration is required.
+
+## Copyright
+
+Copyright (c) 2015 [Librato Inc.](http://librato.com) See LICENSE for details.
