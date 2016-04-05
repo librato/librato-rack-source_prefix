@@ -64,6 +64,11 @@ Or install it yourself as:
 
     $ gem install librato-rack-source_prefix
 
+If you are using the librato-rails gem, add this line to your librato.yml:
+
+  | source_prefix: one.prefix.to.rule.them.all
+
+
 ### Rack Applications
 
 If your application is using a non-Rails, Rack framework you'll need to add the following line to your app in order to enable the source prefixing behavior:
