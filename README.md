@@ -66,7 +66,7 @@ Or install it yourself as:
 
 If you are using the librato-rails gem, add this line to your librato.yml:
 
-  | source_prefix: one.prefix.to.rule.them.all
+    source_prefix: one.prefix.to.rule.them.all
 
 
 ### Rack Applications
